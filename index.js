@@ -83,6 +83,14 @@ async function run() {
       const result = await productsCollection.deleteOne(query)
       console.log(result, "result ID");
       res.send(result)
+      // const productId = req.params.productId;
+      // console.log(productId, 'from delete query');
+      // const query = {
+      //   _id: new ObjectId(productId)
+      // };
+      // const result = await productsCollection.deleteOne(query)
+      // console.log(result, 'from delete');
+      // res.send(result)
     });
 
     console.log(

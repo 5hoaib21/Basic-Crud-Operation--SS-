@@ -77,6 +77,25 @@ async function run() {
       // console.log(result, 'result ');
     });
 
+
+
+    app.put("/products/:productId", async (req, res) => {
+      const {productId} = req.params; 
+      const updatedData = req.body;
+      // console.log(productId, updatedData);
+      const filter = {_id: new ObjectId(productId)};
+      const updatedDoc = {
+        $set: {
+          ...updatedData,
+        }
+      }
+      const result = await productsCollection.updateOne(filter, updatedDoc);
+      // console.log(result, 'result from server');
+      res.send(result)
+    })
+
+
+
     app.delete("/products/:productId", async (req, res) => {
       const productId = req.params.productId;
       const query = { _id: new ObjectId(productId) };
@@ -92,6 +111,8 @@ async function run() {
       // console.log(result, 'from delete');
       // res.send(result)
     });
+
+    
 
     console.log(
       "Pinged your deployment. You successfully connected to MongoDB!",
